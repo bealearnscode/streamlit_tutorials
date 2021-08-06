@@ -11,6 +11,7 @@ DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
 # downloads data, puts in pandas dataframe,
 # and converts the date column from text
 # to datetime and specifies number of rows we want to load
+@st.cache
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -23,4 +24,5 @@ data_load_state = st.text('Loading data...')
 # Load 10,000 rows of data into the dataframe.
 data = load_data(10000)
 # Notify the reader that the data was successfully loaded.
-data_load_state.text('Loading data...done!')
+#data_load_state.text('Loading data...done!')
+data_load_state.text("Done! (using st.cache)")
